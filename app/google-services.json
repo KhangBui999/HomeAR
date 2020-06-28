@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "515565946469",
+    "firebase_url": "https://infs3605-home-ar.firebaseio.com",
+    "project_id": "infs3605-home-ar",
+    "storage_bucket": "infs3605-home-ar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515565946469:android:059cd15ddb10c8cf7be88c",
+        "android_client_info": {
+          "package_name": "com.universal.homear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515565946469-jjsu4vggs5jesg9ujd1p7csjmga4jtfq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universal.homear",
+            "certificate_hash": "35ead4a9f21af036e5fce276c6be979cbaf3bda9"
+          }
+        },
+        {
+          "client_id": "515565946469-fp61799oukqkqq12sbq81id9l4lg36cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG8QYIjR5wSWIlDPf-2yJqCSuY1kD-sJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515565946469-fp61799oukqkqq12sbq81id9l4lg36cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
