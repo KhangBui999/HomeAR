@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HomeAR</string>
+    <string name="main_signup">Sign Up! It\'s Free!</string>
+    <string name="main_info">Home AR lets you virtually ‘place’ furnishings in your space.
+        From sofas and lamps, to rugs and tables, all of the products are rendered in 3D and true to
+        scale so you can make sure it’s just the right size, design and functionality for your room.</string>
 </resources>
