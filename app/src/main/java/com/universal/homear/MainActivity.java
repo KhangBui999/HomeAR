@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mLogin;
     private TextView mRegister;
+    private FirebaseAuth mAuth;
+    private String TAG = "com.universal.homear.main";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Executed after the onCreate method
+     * DEVELOPMENT NOTE:
+     * bypassLogin(currentUser) should be commented out when working on authentication or MainActivity
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        bypassLogin(currentUser);
+    }
+
+    /**
+     * Allows user to log in instantly if they have are still logged in on their phones.
+     * @param user is the current Firebase user account.
+     */
+    protected void bypassLogin(FirebaseUser user) {
+        if(user != null) {
+            Log.d(TAG, "Logged in user:"+user.getUid()+". Bypassing login.");
+            launchHomeActivity();
+        }
+        else {
+            Log.d(TAG, "No current user detected. Authentication form must be filled.");
+        }
+    }
+
     private void launchLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -45,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
     private void launchSignUpActivity() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    private void launchHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
