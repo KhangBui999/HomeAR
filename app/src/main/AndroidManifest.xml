@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OnboardingActivity"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"></activity>
+        <activity android:name=".OnboardingActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/LoginTheme"/>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/LoginTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/MainTheme">

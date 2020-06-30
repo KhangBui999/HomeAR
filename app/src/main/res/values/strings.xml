@@ -7,6 +7,14 @@
     <string name="main_login">Log In</string>
     <string name="email_hint">Your E-mail</string>
     <string name="password_hint">Your Password</string>
+    <string name="login_google">Log In With Google</string>
+    <string name="no_account">Don\'t Have An Account? Sign Up Here!</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="authenticating">Authenticating</string>
     <string name="name_hint">Your Name</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
