@@ -110,12 +110,9 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 Exception e = task.getException();
                                 Log.w(TAG, "signInWithEmail:failure", e);
-                                if(e instanceof FirebaseAuthInvalidUserException){
-                                    mStatus.setText("E-mail does not exist or has been disabled.");
+                                if(e instanceof FirebaseAuthInvalidUserException || e instanceof FirebaseAuthInvalidCredentialsException){
+                                    mStatus.setText("Login details does not match or has been disabled.");
 
-                                }
-                                else if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                    mStatus.setText("Password entered does not match the email address.");
                                 }
                                 else if (e instanceof FirebaseAuthException){
                                     String errorCode = ((FirebaseAuthException) e).getErrorCode();

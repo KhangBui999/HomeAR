@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_search"
         android:name="com.universal.homear.SearchFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_your_cart"
         android:name="com.universal.homear.ShoppingCartFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_your_cart"
         tools:layout="@layout/fragment_shopping_cart" />
 </navigation>
