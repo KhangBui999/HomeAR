@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                     mStatus.setText("Error occurred. ERROR CODE:"+errorCode);
                                 }
                                 else {
-                                    mStatus.setText("Unknown error occurred. Please contact support.");
+                                    mStatus.setText("Unknown error occurred. Please contact support (e-mail: support@homear.com).");
                                 }
                                 Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 renderLoading(false);
