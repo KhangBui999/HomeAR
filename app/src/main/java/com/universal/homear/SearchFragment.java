@@ -12,6 +12,9 @@ public class SearchFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
+
+        //Check AR Device Compatibility
+
         return root;
     }
 }
