@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        bypassLogin(currentUser);
+        //bypassLogin(currentUser);
     }
 
     /**
