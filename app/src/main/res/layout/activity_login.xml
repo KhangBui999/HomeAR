@@ -43,6 +43,7 @@
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_loginTitle"
         app:layout_constraintTop_toBottomOf="@+id/tv_loginTitle" />
 

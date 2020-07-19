@@ -16,6 +16,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:tint="#8A8A8F"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/abc_vector_test" />
+
             <TextView
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
@@ -117,6 +129,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productDim" />
 
+            <ImageView
+                android:id="@+id/addCartButton"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="248dp"
+                android:layout_marginTop="126dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@+id/productPrice"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/cart_icon" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
@@ -130,24 +153,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/viewARButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginBottom="20dp"
             android:text="View in AR"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintEnd_toStartOf="@+id/contactButton"
             app:layout_constraintHorizontal_bias="0.207"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/contactButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
             android:layout_marginBottom="20dp"
-            android:text="Add to Bag"
+            android:text="Contact Store"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
