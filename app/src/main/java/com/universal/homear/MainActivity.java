@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        bypassLogin(currentUser);
+        //bypassLogin(currentUser);
     }
 
     /**
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchSignUpActivity() {
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, ArViewerActivity.class);
         startActivity(intent);
     }
 

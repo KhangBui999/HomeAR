@@ -22,6 +22,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -43,5 +48,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.15.0'
+    implementation 'com.google.ar.sceneform:assets:1.15.0'
 
 }
