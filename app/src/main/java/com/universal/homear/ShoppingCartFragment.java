@@ -1,5 +1,6 @@
 package com.universal.homear;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class ShoppingCartFragment extends Fragment {
         CartAdapter.RecyclerViewClickListener listener = new CartAdapter.RecyclerViewClickListener(){
             @Override
             public void onClick(View view, int pos){
-
+                launchProductView(pos);
             }
         };
 
@@ -39,6 +40,12 @@ public class ShoppingCartFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
         return root;
+    }
+
+    public void launchProductView(int position) {
+        Intent intent = new Intent(getActivity(), ProductDetail.class);
+        intent.putExtra("PRODUCT_ID", position);
+        startActivity(intent);
     }
 
 }

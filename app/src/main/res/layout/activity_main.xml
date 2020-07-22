@@ -17,6 +17,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_appName"
+        android:elevation="20dp"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -28,6 +29,7 @@
         android:text="@string/main_signup"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        android:elevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,6 +45,7 @@
         android:text="@string/main_info"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
+        android:elevation="30dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -57,6 +60,7 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:elevation="30dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_mainInfo"
         app:layout_constraintStart_toStartOf="@+id/tv_mainInfo" />
 
@@ -70,17 +74,21 @@
         android:text="@string/main_login"
         android:textColor="#33312E"
         android:textSize="18sp"
+        android:elevation="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_landing"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+    <ImageView
+        android:id="@+id/start_screen"
+        android:layout_width="415dp"
+        android:layout_height="535dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/start_up2"
         app:layout_constraintBottom_toTopOf="@+id/v_brownbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:elevation="10dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,12 +22,33 @@ public class MainActivity extends AppCompatActivity {
     private TextView mRegister;
     private FirebaseAuth mAuth;
     private String TAG = "com.universal.homear.main";
+    ImageView imageViews;
+    AnimationDrawable imagesAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        imageViews = findViewById(R.id.start_screen);
+        /*imageViews.setBackgroundResource(R.drawable.start_up_slideshow);
+        imagesAnimation = (AnimationDrawable) imageViews.getBackground();
+        imagesAnimation.start();*/
+        final int[] imageArray = { R.drawable.start_up1, R.drawable.start_up2};
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            int i = 0;
+
+            public void run() {
+                imageViews.setImageResource(imageArray[i]);
+                i++;
+                if (i > imageArray.length - 1) {
+                    i = 0;
+                }
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.postDelayed(runnable, 2000);
         mLogin = findViewById(R.id.tv_login);
         mRegister = findViewById(R.id.tv_signup);
         mRegister.setPaintFlags(mRegister.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

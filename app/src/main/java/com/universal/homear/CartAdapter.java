@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name, id, price, stock;
+        private ImageView image;
         private RecyclerViewClickListener mListener;
 
 
@@ -38,6 +40,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             id = v.findViewById(R.id.cart_id);
             price = v.findViewById(R.id.cart_price);
             stock = v.findViewById(R.id.cart_stock);
+            image = v.findViewById(R.id.cart_image);
         }
 
         @Override
@@ -54,10 +57,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Cart cart = mCart.get(position);
-        holder.id.setText(cart.getName());
-        holder.stock.setText(cart.getName());
-        holder.price.setText(cart.getName());
+        holder.id.setText(cart.getId());
+        holder.stock.setText(cart.getStock());
+        holder.price.setText(cart.getPrice());
         holder.name.setText(cart.getName());
+        holder.image.setImageResource(cart.getImage());
     }
 
     @Override
