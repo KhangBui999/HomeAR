@@ -1,5 +1,7 @@
 package com.universal.homear;
 
+import java.util.ArrayList;
+
 public class Cart {
     private String id;
     private String name;
@@ -57,6 +59,20 @@ public class Cart {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+
+    public static ArrayList<Cart> getDummyData() {
+        ArrayList<Cart> dummy = new ArrayList<>();
+        dummy.add(new Cart("abc123", "Leather Chair", 112, "In Stock", R.drawable.chair_1));
+        dummy.add(new Cart("qwe456", "Black Chair", 213, "Out of Stock", R.drawable.chair_2));
+        dummy.add(new Cart("34t3g6", "Blachabfiu", 456, "In Stock", R.drawable.chair_1));
+        dummy.add(new Cart("v34qt3", "kjwfbjwh b", 787, "In Stock", R.drawable.chair_2));
+        dummy.add(new Cart("3v4t3t", "fkjew bfjhwb", 123, "Out of Stock", R.drawable.chair_1));
+        dummy.add(new Cart("qdfih2", "ddfwef bb", 233, "Out of Stock", R.drawable.chair_2));
+        dummy.add(new Cart("gerf34", "ad kjfaf", 12313, "In Stock", R.drawable.chair_1));
+        dummy.add(new Cart("asdf24", "dsfjk nr3wef", 12313, "Out of Stock", R.drawable.chair_2));
+        return dummy;
     }
 
 }

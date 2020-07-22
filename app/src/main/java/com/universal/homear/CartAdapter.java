@@ -59,7 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Cart cart = mCart.get(position);
         holder.id.setText(cart.getId());
         holder.stock.setText(cart.getStock());
-        holder.price.setText(cart.getPrice());
+        holder.price.setText(Integer.toString(cart.getPrice()));
         holder.name.setText(cart.getName());
         holder.image.setImageResource(cart.getImage());
     }

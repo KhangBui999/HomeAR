@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
@@ -37,8 +38,14 @@ public class SearchFragment extends Fragment {
 
         mAdapter = new CartAdapter(new ArrayList<Cart>(), listener);
         recyclerView.setAdapter(mAdapter);
-
+        getTopics();
         return root;
+    }
+
+    private void getTopics(){
+        final List<Cart> dummyList = Cart.getDummyData();
+        mAdapter.setCartList(dummyList);
+
     }
 
 
