@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment {
 
 
     public void launchProductView(int position) {
-        Intent intent = new Intent(getActivity(), ProductDetail.class);
+        Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
         intent.putExtra("PRODUCT_ID", position);
         startActivity(intent);
     }

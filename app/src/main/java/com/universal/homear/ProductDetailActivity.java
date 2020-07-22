@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class ProductDetail extends AppCompatActivity {
+public class ProductDetailActivity extends AppCompatActivity {
     private Button viewAR, shopContact;
     private ImageView backbtn;
 
@@ -19,11 +19,12 @@ public class ProductDetail extends AppCompatActivity {
 
         shopContact = findViewById(R.id.contactButton);
         backbtn = findViewById(R.id.iv_backBtn);
+        viewAR = findViewById(R.id.viewARButton);
 
         shopContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductDetail.this, StoreDetail.class);
+                Intent intent = new Intent(ProductDetailActivity.this, StoreDetailActivity.class);
                 startActivity(intent);
             }
         });
@@ -31,7 +32,7 @@ public class ProductDetail extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductDetail.this, HomeActivity.class);
+                Intent intent = new Intent(ProductDetailActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
