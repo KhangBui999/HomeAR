@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/profileButton"
-        android:layout_width="56dp"
-        android:layout_height="51dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="28dp"
         android:src="@drawable/profile_icon"
@@ -51,6 +51,7 @@
         android:layout_marginTop="20dp"
         android:text="Previously Viewed"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_images" />
     
@@ -66,6 +67,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Items Previously Viewed"
+        app:layout_constraintBottom_toBottomOf="@+id/prev_viewed"
+        app:layout_constraintEnd_toEndOf="@+id/prev_viewed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/prev_viewed" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

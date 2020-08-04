@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
@@ -31,7 +32,9 @@ import java.io.IOException;
 public class ArViewerActivity extends AppCompatActivity {
 
     private ArFragment fragment;
-    private Button mClear;
+    private Button mClear, mHelp;
+    private ImageView mBack;
+    private FloatingActionButton mCamera;
 
     private ModelRenderable renderable;
     private Context context;
@@ -50,19 +53,25 @@ public class ArViewerActivity extends AppCompatActivity {
         mClear = findViewById(R.id.btn_clear);
         mClear.setOnClickListener(v -> clearObject());
 
+        mHelp = findViewById(R.id.btn_help);
+
+        mBack = findViewById(R.id.iv_backBtn);
+        mBack.setOnClickListener(v -> finish());
+
+        mCamera = findViewById(R.id.fab_picture);
+
         //Retrieves objectFileId from the Furniture Detail screen
         Intent intent = getIntent();
-        String fileId = intent.getStringExtra("objectFileId");
-        String dummyId = "default.glb"; //replace with fileId
+        String fileId = intent.getStringExtra("objectFileId") + ".glb";
 
         //Initialises the firebase storage
         FirebaseApp.initializeApp(this);
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child(dummyId); //change this to intent pass-by value
+        StorageReference modelRef = storage.getReference().child(fileId); //change this to intent pass-by value
         fragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
         try {
-            File file = File.createTempFile(dummyId.substring(0, dummyId.indexOf('.')), "glb");
+            File file = File.createTempFile(fileId.substring(0, fileId.indexOf('.')), "glb");
             modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {

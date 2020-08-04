@@ -18,7 +18,7 @@ public class ShoppingCartFragment extends Fragment {
 
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
-    private CartAdapter mAdapter;
+    private FurnitureAdapter mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
@@ -28,7 +28,7 @@ public class ShoppingCartFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        CartAdapter.RecyclerViewClickListener listener = new CartAdapter.RecyclerViewClickListener(){
+        FurnitureAdapter.RecyclerViewClickListener listener = new FurnitureAdapter.RecyclerViewClickListener(){
             @Override
             public void onClick(View view, int pos){
                 launchProductView(pos);
@@ -36,7 +36,7 @@ public class ShoppingCartFragment extends Fragment {
         };
 
 
-        mAdapter = new CartAdapter(new ArrayList<Cart>(), listener);
+        mAdapter = new FurnitureAdapter(new ArrayList<Furniture>(), listener);
         recyclerView.setAdapter(mAdapter);
 
         return root;

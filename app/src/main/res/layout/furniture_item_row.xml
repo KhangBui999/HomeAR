@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
+    android:layout_margin="4dp"
     android:background="#FFF7EB"
-    >
+    app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +15,10 @@
         <ImageView
             android:id="@+id/cart_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,14 +41,13 @@
             android:id="@+id/cart_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="2dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="$112"
+            android:text="112"
             android:textColor="#33312E"
             android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/cart_name"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/cart_id"
+            app:layout_constraintTop_toTopOf="@+id/cart_id" />
 
         <TextView
             android:id="@+id/cart_id"
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Item #3a86s3"
+            android:text="$"
             app:layout_constraintStart_toEndOf="@+id/cart_image"
             app:layout_constraintTop_toBottomOf="@+id/cart_name" />
 
@@ -65,12 +66,25 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:text="In-stock"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_cart"
             app:layout_constraintStart_toEndOf="@+id/cart_image"
             app:layout_constraintTop_toBottomOf="@+id/cart_id" />
 
+        <Button
+            android:id="@+id/btn_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_default_button"
+            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
+            android:text="Add To Cart"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>
