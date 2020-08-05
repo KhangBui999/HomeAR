@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-
 public class ShoppingCartFragment extends Fragment {
 
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
-    private FurnitureAdapter mAdapter;
+    private CartItemAdapter mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
@@ -28,24 +27,19 @@ public class ShoppingCartFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        FurnitureAdapter.RecyclerViewClickListener listener = new FurnitureAdapter.RecyclerViewClickListener(){
-            @Override
-            public void onClick(View view, int pos){
-                launchProductView(pos);
-            }
+        CartItemAdapter.RecyclerViewClickListener listener = (view, pos) -> {
         };
 
-
-        mAdapter = new FurnitureAdapter(new ArrayList<Furniture>(), listener);
+        mAdapter = new CartItemAdapter(new ArrayList<CartItem>(), listener);
         recyclerView.setAdapter(mAdapter);
+
+        loadShoppingCart();
 
         return root;
     }
 
-    public void launchProductView(int position) {
-        Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
-        intent.putExtra("PRODUCT_ID", position);
-        startActivity(intent);
+    private void loadShoppingCart() {
+        //Firebase Database loading
     }
 
 }
