@@ -10,6 +10,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+/**
+ * Base Activity for the bottom navigation bar.
+ */
 public class HomeActivity extends AppCompatActivity {
 
     @Override

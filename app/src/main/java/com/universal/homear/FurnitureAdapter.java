@@ -28,6 +28,9 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An adapter class for the Search fragment RecyclerView
+ */
 public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyViewHolder> {
 
     private List<Furniture> mCatalogue;
@@ -82,7 +85,7 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
         } else if (furniture.getStock() < 1) {
             holder.stock.setText("Out of Stock");
         } else {
-            holder.stock.setText(Integer.toString(furniture.getPrice()) + " stock left!");
+            holder.stock.setText(Integer.toString(furniture.getStock()) + " stock left!");
         }
         loadImage(holder.itemView.getContext(), holder.image, furniture.getId());
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +116,11 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
                 .into(mImage);
     }
 
+    /**
+     * Allows a user to add furniture items to their shopping cart.
+     * @param id
+     * @param holder
+     */
     private void addItemToCart(String id, MyViewHolder holder) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

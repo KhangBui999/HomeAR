@@ -15,6 +15,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
+/**
+ * An adapter class for the shopping cart RecyclerView.
+ */
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyViewHolder> {
 
     private List<Furniture> mShoppingCart;
@@ -64,14 +67,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         holder.mName.setText(cartItem.getName());
         holder.mQuantity.setText("Quantity: 1");
         holder.mPrice.setText(Integer.toString(cartItem.getPrice()));
-        holder.mRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Remove cart item from database
-            }
-        });
     }
 
+    /**
+     * Uses the Glide library to retrieve images from the Firebase server and render it in the app
+     * @param context
+     * @param mImage
+     * @param id
+     */
     private void loadImage(Context context, ImageView mImage, String id) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference modelRef = storage.getReference().child(id + ".jpeg");
@@ -85,6 +88,10 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         return mShoppingCart.size();
     }
 
+    /**
+     * Used for real-time updates of the shopping cart
+     * @param list
+     */
     public void setShoppingCart(List<Furniture> list) {
         mShoppingCart.clear();
         mShoppingCart.addAll(list);

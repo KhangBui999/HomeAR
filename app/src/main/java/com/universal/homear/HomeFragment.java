@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.universal.homear.R;
 
+/**
+ * Home screen
+ */
 public class HomeFragment extends Fragment {
 
     private ImageView profile;

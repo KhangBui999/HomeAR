@@ -77,7 +77,14 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Do nothing for now
+                disabledFeatureDialog();
+            }
+        });
+
+        mForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disabledFeatureDialog();
             }
         });
 
@@ -87,6 +94,11 @@ public class LoginActivity extends AppCompatActivity {
                 launchRegisterActivity();
             }
         });
+    }
+
+    private void disabledFeatureDialog() {
+        DisabledFeatureDialog dialog = new DisabledFeatureDialog();
+        dialog.show(getSupportFragmentManager(), "com.universal.homear.LoginActivity");
     }
 
     private void authenticateUser() {

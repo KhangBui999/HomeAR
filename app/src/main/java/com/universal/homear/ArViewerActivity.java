@@ -30,6 +30,11 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This activity allows a user to utilise the AR feature. The code below handles 3D model rendering
+ * using Google Sceneform, an API that reduces the boilerplate code needed to render AR. Moreover,
+ * the code also handles retrieving 3D objects from the Firebase server.
+ */
 public class ArViewerActivity extends AppCompatActivity {
 
     private ArFragment fragment;
@@ -54,12 +59,21 @@ public class ArViewerActivity extends AppCompatActivity {
         mClear = findViewById(R.id.btn_clear);
         mClear.setOnClickListener(v -> clearObject());
 
+        //Launches a help dialog for the user. Provides quickstart instructions.
         mHelp = findViewById(R.id.btn_help);
-        //Launch dialog
+        mHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArViewerHelpDialog dialog = new ArViewerHelpDialog();
+                dialog.show(getSupportFragmentManager(), "com.universal.homear.ArViewerActivity");
+            }
+        });
 
+        //Back button
         mBack = findViewById(R.id.iv_backBtn);
         mBack.setOnClickListener(v -> finish());
 
+        //Disabled feature - camera
         mCamera = findViewById(R.id.fab_picture);
         mCamera.setVisibility(View.INVISIBLE);
 
@@ -94,7 +108,8 @@ public class ArViewerActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Builds the 3D Model with Google Sceneform. The API allows for accurate measurements of
+     * the surrounding environment and renders the object with shadow and lighting effects.
      * @param file
      */
     private void buildModel(File file) {
@@ -116,7 +131,7 @@ public class ArViewerActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Allows the user to place an AR model.
      */
     private void onTapListenerHandler() {
         fragment.setOnTapArPlaneListener(((hitResult, plane, motionEvent) -> {
@@ -147,7 +162,7 @@ public class ArViewerActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Allows a user to clear the current object from their view.
      */
     private void clearObject() {
         try{

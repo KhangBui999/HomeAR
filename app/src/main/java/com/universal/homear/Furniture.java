@@ -1,7 +1,8 @@
 package com.universal.homear;
 
-import java.util.ArrayList;
-
+/**
+ * Model class for Furniture data
+ */
 public class Furniture {
     private String id;
     private String name;
