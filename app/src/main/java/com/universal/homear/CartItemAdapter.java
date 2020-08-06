@@ -1,5 +1,6 @@
 package com.universal.homear;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +9,18 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyViewHolder> {
 
-    private List<CartItem> mShoppingCart;
+    private List<Furniture> mShoppingCart;
     private RecyclerViewClickListener mListener;
 
-    public CartItemAdapter(List<CartItem> shoppingCart, RecyclerViewClickListener listener) {
+    public CartItemAdapter(List<Furniture> shoppingCart, RecyclerViewClickListener listener) {
         mShoppingCart = shoppingCart;
         mListener = listener;
     }
@@ -26,7 +31,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView mName, mQuantity, mRemove, mEdit, mPrice;
+        private TextView mName, mQuantity, mPrice, mRemove;
         private ImageView mImage;
         private RecyclerViewClickListener mListener;
 
@@ -37,9 +42,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             mName = v.findViewById(R.id.cart_name);
             mImage = v.findViewById(R.id.cart_image);
             mQuantity = v.findViewById(R.id.tv_quantity);
-            mRemove = v.findViewById(R.id.tv_remove);
-            mEdit = v.findViewById(R.id.tv_edit);
             mPrice = v.findViewById(R.id.tv_price);
+            mRemove = v.findViewById(R.id.tv_remove);
         }
 
         @Override
@@ -55,10 +59,25 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
     }
 
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CartItem cartItem = mShoppingCart.get(position);
-        holder.mName.setText(cartItem.getFurniture().getName());
-        holder.mQuantity.setText("Quantity: "+cartItem.getQuantity());
-        holder.mPrice.setText("$999");
+        Furniture cartItem = mShoppingCart.get(position);
+        loadImage(holder.itemView.getContext(), holder.mImage, cartItem.getId());
+        holder.mName.setText(cartItem.getName());
+        holder.mQuantity.setText("Quantity: 1");
+        holder.mPrice.setText(Integer.toString(cartItem.getPrice()));
+        holder.mRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Remove cart item from database
+            }
+        });
+    }
+
+    private void loadImage(Context context, ImageView mImage, String id) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference modelRef = storage.getReference().child(id + ".jpeg");
+        Glide.with(context)
+                .load(modelRef)
+                .into(mImage);
     }
 
     @Override
@@ -66,7 +85,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         return mShoppingCart.size();
     }
 
-    public void setShoppingCart(List<CartItem> list) {
+    public void setShoppingCart(List<Furniture> list) {
         mShoppingCart.clear();
         mShoppingCart.addAll(list);
         notifyDataSetChanged();

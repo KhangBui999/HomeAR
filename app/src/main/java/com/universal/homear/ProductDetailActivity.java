@@ -10,17 +10,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -31,11 +39,14 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Button viewAR, cartBtn;
     private ImageView mImage, backBtn;
     private Furniture furniture;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        mAuth = FirebaseAuth.getInstance();
 
         mName = findViewById(R.id.productName);
         mPrice = findViewById(R.id.productPrice);
@@ -109,7 +120,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Adds object to cart :)
+                addItemToCart();
             }
         });
 
@@ -127,6 +138,44 @@ public class ProductDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(ProductDetailActivity.this, ArViewerActivity.class);
                 intent.putExtra("objectFileId", furniture.getId());
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void addItemToCart() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final boolean[] change = {false};
+
+        DocumentReference cartRef = db.collection("ShoppingCart").document(user.getUid());
+        db.runTransaction(new Transaction.Function<Void>() {
+            @Override
+            public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                DocumentSnapshot snapshot = transaction.get(cartRef);
+                ArrayList<String> cartList = (ArrayList<String>) snapshot.get("cartItems");
+                if(!cartList.contains(furniture.getId())) {
+                    cartList.add(furniture.getId());
+                    transaction.update(cartRef, "cartItems", cartList);
+                    change[0] = true;
+                }
+                return null;
+            }
+        })
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                if(change[0]) {
+                    Toast.makeText(ProductDetailActivity.this, "Item Added to Cart!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(ProductDetailActivity.this, "Item Already in Cart!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ProductDetailActivity.this, "Transaction Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }

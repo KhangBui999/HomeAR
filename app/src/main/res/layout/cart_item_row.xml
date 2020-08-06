@@ -57,28 +57,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_quantity" />
 
         <TextView
-            android:id="@+id/tv_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="|"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_remove"
-            app:layout_constraintStart_toEndOf="@+id/tv_remove"
-            app:layout_constraintTop_toTopOf="@+id/tv_remove" />
-
-        <TextView
-            android:id="@+id/tv_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="EDIT ITEM"
-            android:textColor="#00B8D4"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_divider"
-            app:layout_constraintStart_toEndOf="@+id/tv_divider"
-            app:layout_constraintTop_toTopOf="@+id/tv_divider" />
-
-        <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
