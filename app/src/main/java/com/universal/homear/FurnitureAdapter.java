@@ -13,7 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.FirebaseApp;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -32,7 +33,7 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
     private List<Furniture> mCatalogue;
     private RecyclerViewClickListener mListener;
 
-    public FurnitureAdapter(List<Furniture> catalogue, RecyclerViewClickListener listener){
+    public FurnitureAdapter(List<Furniture> catalogue, RecyclerViewClickListener listener) {
         mCatalogue = catalogue;
         mListener = listener;
     }
@@ -76,14 +77,12 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
         //holder.stock.setText(furniture.getStock());
         holder.price.setText(Integer.toString(furniture.getPrice()));
         holder.name.setText(furniture.getName());
-        if(furniture.getStock() > 10) {
+        if (furniture.getStock() > 10) {
             holder.stock.setText("In Stock");
-        }
-        else if(furniture.getStock() < 1) {
+        } else if (furniture.getStock() < 1) {
             holder.stock.setText("Out of Stock");
-        }
-        else {
-            holder.stock.setText(Integer.toString(furniture.getPrice()) +" stock left!");
+        } else {
+            holder.stock.setText(Integer.toString(furniture.getPrice()) + " stock left!");
         }
         loadImage(holder.itemView.getContext(), holder.image, furniture.getId());
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -115,9 +114,10 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
     }
 
     private void addItemToCart(String id, MyViewHolder holder) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        final boolean[] change = {false};
 
         DocumentReference cartRef = db.collection("ShoppingCart").document(user.getUid());
         db.runTransaction(new Transaction.Function<Void>() {
@@ -125,15 +125,26 @@ public class FurnitureAdapter extends RecyclerView.Adapter<FurnitureAdapter.MyVi
             public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
                 DocumentSnapshot snapshot = transaction.get(cartRef);
                 ArrayList<String> cartList = (ArrayList<String>) snapshot.get("cartItems");
-                if(!cartList.contains(id)) {
+                if (!cartList.contains(id)) {
                     cartList.add(id);
                     transaction.update(cartRef, "cartItems", cartList);
-                    Toast.makeText(holder.itemView.getContext(), "Item Added to Cart!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(holder.itemView.getContext(), "Item Already in Cart!", Toast.LENGTH_SHORT).show();
+                    change[0] = true;
                 }
                 return null;
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                if (change[0]) {
+                    Toast.makeText(holder.itemView.getContext(), "Item Added to Cart!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(holder.itemView.getContext(), "Item Already in Cart!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(holder.itemView.getContext(), "Transaction Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }

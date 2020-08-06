@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -54,11 +55,13 @@ public class ArViewerActivity extends AppCompatActivity {
         mClear.setOnClickListener(v -> clearObject());
 
         mHelp = findViewById(R.id.btn_help);
+        //Launch dialog
 
         mBack = findViewById(R.id.iv_backBtn);
         mBack.setOnClickListener(v -> finish());
 
         mCamera = findViewById(R.id.fab_picture);
+        mCamera.setVisibility(View.INVISIBLE);
 
         //Retrieves objectFileId from the Furniture Detail screen
         Intent intent = getIntent();
